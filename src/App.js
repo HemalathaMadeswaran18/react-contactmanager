@@ -7,6 +7,7 @@ import { ContactUs } from './components/ContactUs';
 import { AboutUs } from './components/AboutUs';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import PageNotFound from './components/PageNotFound';
+import AddContact from './components/AddContact';
 
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
    <Route path="/contact" element = {<ContactList/>} />
    <Route path="/contactus" element = {<ContactUs/>} />
    <Route path="*" element = {<PageNotFound/>} />
+   <Route path="/addcontact" element = {<AddContact/>} />
+
         </Routes>
         <Footer />
 
