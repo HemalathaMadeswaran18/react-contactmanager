@@ -29,6 +29,10 @@ const Header=()=>{
         <Link class="nav-link" to="contactus">Contact Us</Link>
       </li>
 
+      <li class="nav-item active">
+        <Link class="nav-link" to="addapi">AddAPI</Link>
+      </li>
+
     
      
      

@@ -4,55 +4,63 @@ import { v4 as uuidv4 } from 'uuid';
 import { useState } from "react";
 import ReactDOM from 'react-dom/client';
 import Contact from './Contact';
+const AddContactfromAPI = () => {
 
-export const AddContact = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [city, setCity] = useState("");
-  const [person, setPerson] = useState([]);
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [city, setCity] = useState("");
+    const [person, setPerson] = useState([]);
 
-  const DeleteContactCard=(id)=>{
-    setPerson(person.filter(item=>item.id !== id));
-  }
+    const getName = (e) => {
+        setName(e.target.value);
+      }
+    
+      const getEmail = (e) => {
+        setEmail(e.target.value);
+      }
+    
+      const getCity = (e) => {
+        setCity(e.target.value);
+      }
+    
+      const getPhone = (e) => {
+        setPhone(e.target.value);
+      }
+    
 
-  const getName = (e) => {
-    setName(e.target.value);
-  }
+    const handleSubmit = (event) => {
+        // event.preventDefault();
+    
+        // // Generate a unique ID using uuidv4
+        // const id = uuidv4();
+    
+        // const newContact = {
+        //   id, // Assign the generated ID
+        //   name,
+        //   phone,
+        //   email,
+        //   city,
+        // }
+    
+        // setPerson([...person, newContact]);
+        // console.log(person);
 
-  const getEmail = (e) => {
-    setEmail(e.target.value);
-  }
-
-  const getCity = (e) => {
-    setCity(e.target.value);
-  }
-
-  const getPhone = (e) => {
-    setPhone(e.target.value);
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Generate a unique ID using uuidv4
-    const id = uuidv4();
-
-    const newContact = {
-      id, // Assign the generated ID
-      name,
-      phone,
-      email,
-      city,
-    }
-
-    setPerson([...person, newContact]);
-    console.log(person);
-  }
-
- 
+        fetch('http://localhost:3002/persons',{
+            method:'POST',
+            body: JSON.stringify({
+                name : name,
+                email:email,
+                phone:phone,
+                city:city
+             } ),
+             headers: {
+                'Content-Type': 'application/json',
+              }
+        }).then (res=>res.json())
+        .then(data=>{console.log(data)})
+      }
   
-
   return (
     <div>
       <div className="container">
@@ -107,20 +115,8 @@ export const AddContact = () => {
           </form>
         </div>
       </div>
-
-      <div className="container">
-        <div className="col-md-12">
-          <div className="row">
-            {
-              person.map((person) => (
-                <Contact DeleteClickHandler={DeleteContactCard}  key={person.id} id={person.id} name={person.name} email={person.email} phone={person.phone} city={person.city} />
-              ))
-            }
-          </div>
-        </div>
       </div>
-    </div>
-  );
+  )
 }
 
-export default AddContact;
+export default AddContactfromAPI

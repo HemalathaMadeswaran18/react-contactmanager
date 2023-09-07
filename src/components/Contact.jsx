@@ -2,6 +2,10 @@ import React from "react";
 
 const Contact = (props) => {
 
+    const DeleteClickHandler = (id)=>{
+        console.log(id);
+        props.DeleteContactCard(id);
+    }
 
 
     return (
@@ -13,6 +17,10 @@ const Contact = (props) => {
                     <p class="card-text">Phone: {props.phone}</p>
                     <p class="card-text">Email: {props.email}</p>
                     <p class="card-text">City: {props.city}</p>
+                    <button
+            className="btn btn-danger"
+            onClick={() => props.DeleteClickHandler(props.id)} // Call the handler with the ID
+          ></button>
 
                 </div>
             </div>
