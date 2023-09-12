@@ -6,7 +6,7 @@ const ContactList = () => {
     const [selectedCard, setSelectedCard] = useState(null);
 
     const DeleteContactCard=(id)=>{
-        fetch(` http://localhost:3002/persons/${id}`,{
+        fetch(` http://localhost:3002/persons${id}`,{
             method:'DELETE'
         })
         .then(res=>res.json())
@@ -71,7 +71,6 @@ const ContactList = () => {
                             className={`card card-color-dark ${selectedCard === index ? 'clicked' : ''} `}
                             onClick={() => handleCardClick(index)} // Toggle details on card click
                         >
-
                             <div className="border"></div>
                             <img
                                 src={imageUrls[index]}
@@ -79,14 +78,13 @@ const ContactList = () => {
                                 height={300}
                                 width={50}
                             />
-                            <button className="btn btn-danger" onClick={DeleteContactCard(user.id)}  ></button>
                             <h1>{user.name}</h1>
                             {selectedCard === index && (
                                 <div className="additional-details">
                                     <p className="font-weight-bold text-light">Email: {user.email}</p>
                                     <p className="font-weight-bold text-light">Phone: {user.phone}</p>
                                     <p className="font-weight-bold text-light">City: {user.city}</p>
-                                    
+                                    <button className="btn btn-danger" onClick={DeleteContactCard(user.id)}  ></button>
 
                                 </div>
                             )}

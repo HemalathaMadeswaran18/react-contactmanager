@@ -111,7 +111,7 @@ const AddContactfromAPI = () => {
               />
             </div>
 
-            <button type="submit" className="btn btn-primary mt-2 mx-auto d-block">Submit</button>
+            <button data-testid="btnRegister" type="submit" className="btn btn-primary mt-2 mx-auto d-block">Submit</button>
           </form>
         </div>
       </div>
